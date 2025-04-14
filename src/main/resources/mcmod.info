@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
+    "version": "${mod_version}",
+    "mcversion": "${mc_version}",
+    "url": "https://github.com/syz66/${mod_id}",
+    "authorList": [
+      "syz"
+    ]
+  }
+]

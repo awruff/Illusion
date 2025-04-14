@@ -1,0 +1,9 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "org.example.illusion.mixins",
+  "refmap": "mixins.${mod_id}.refmap.json",
+  "mixins": [
+    "forge.ModListMixin"
+  ]
+}
