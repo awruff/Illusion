@@ -1,9 +1,9 @@
 package org.example.illusion.mixins.forge;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.network.handshake.FMLHandshakeMessage;
 import org.example.illusion.Illusion;
+import org.example.illusion.utils.Wrapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,11 +15,12 @@ import java.util.Map;
 
 @Mixin(value = FMLHandshakeMessage.ModList.class, remap = false)
 public class ModListMixin {
-    @Shadow
-    private Map<String,String> modTags;
+    @Shadow private Map<String,String> modTags;
 
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
     private void removeMod(List<ModContainer> modList, CallbackInfo ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning()) this.modTags.remove(Illusion.MODID);
+        if (!Wrapper.isSinglePlayer()) {
+            modTags.remove(Illusion.MODID);
+        }
     }
 }

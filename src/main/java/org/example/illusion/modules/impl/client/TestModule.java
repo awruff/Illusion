@@ -1,4 +1,4 @@
-package org.example.illusion.modules.impl;
+package org.example.illusion.modules.impl.client;
 
 import org.example.illusion.modules.api.Category;
 import org.example.illusion.modules.api.Module;
