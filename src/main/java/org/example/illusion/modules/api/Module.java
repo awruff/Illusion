@@ -1,5 +1,7 @@
 package org.example.illusion.modules.api;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import java.util.ArrayList;
 
 public abstract class Module {
@@ -70,6 +72,22 @@ public abstract class Module {
         return enabled = !enabled;
     }
 
+    public final void setEnabled(final boolean enabled) {
+        if (this.enabled == enabled) {
+            return;
+        } else {
+            this.enabled = enabled;
+        }
+
+        if (this.enabled) {
+            MinecraftForge.EVENT_BUS.register(this);
+            onEnable();
+        } else {
+            MinecraftForge.EVENT_BUS.unregister(this);
+            onDisable();
+        }
+    }
+
     /**
      * Gets the key bind for this module.
      *
@@ -103,4 +121,7 @@ public abstract class Module {
     public final ArrayList<String> getSettings() {
         return settings;
     }
+
+    public void onEnable() {}
+    public void onDisable() {}
 }

@@ -4,8 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.world.World;
 
-// TODO: javadocs
-
 /**
  * Simplify interacting with Minecraft
  * Used for abstracting Minecraft calls when I inevitably add multiversion support.
