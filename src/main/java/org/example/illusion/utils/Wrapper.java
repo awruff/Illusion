@@ -2,6 +2,7 @@ package org.example.illusion.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class Wrapper {
@@ -19,5 +20,9 @@ public class Wrapper {
 
     public static boolean isSinglePlayer() {
         return getClient().isIntegratedServerRunning();
+    }
+
+    public static void addChatMessage(String message) {
+        getPlayer().addChatMessage(new ChatComponentText("\2478[\2475Illusion\2478]\2477 " + message));
     }
 }

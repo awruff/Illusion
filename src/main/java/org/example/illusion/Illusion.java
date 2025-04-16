@@ -1,6 +1,7 @@
 package org.example.illusion;
 
 import net.minecraftforge.fml.common.Mod;
+import org.example.illusion.features.commands.api.CommandManager;
 import org.example.illusion.features.gui.ClickGui;
 import org.example.illusion.features.modules.api.ModuleManager;
 
@@ -18,6 +19,7 @@ public class Illusion {
     public static Illusion INSTANCE;
 
     private ModuleManager moduleManager;
+    private CommandManager commandManager;
     private ClickGui clickGui;
 
     public final void initialize() {
@@ -34,6 +36,10 @@ public class Illusion {
 
     public ModuleManager getModuleManager() {
         return moduleManager;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
     }
 
     public ClickGui getClickGui() {

@@ -30,7 +30,12 @@ repositories {
 }
 
 dependencies {
-    implementation(shade("org.polyfrost:polymixin:0.8.4+build.2"){
+    implementation(shade("org.polyfrost:polymixin:0.8.4+build.2") {
         isTransitive = false
     })
+
+    implementation(shade("io.github.nevalackin:radbus:1.0.0") {
+        isTransitive = false
+    })
+
 }

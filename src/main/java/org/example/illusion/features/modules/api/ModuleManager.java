@@ -12,7 +12,7 @@ public class ModuleManager {
     }
 
     private void register(Module module) {
-        this.modules.put(module.getName(), module);
+        modules.put(module.getName(), module);
     }
 
     public Module getModule(String name) {
