@@ -1,7 +1,7 @@
 package org.example.illusion.features.modules.api;
 
-import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.Validate;
+import org.example.illusion.Illusion;
 
 public abstract class Module {
     private final String name;
@@ -50,10 +50,10 @@ public abstract class Module {
         this.enabled = enabled;
 
         if (enabled) {
-            MinecraftForge.EVENT_BUS.register(this);
+            Illusion.INSTANCE.getEventBus().subscribe(this);
             onEnable();
         } else {
-            MinecraftForge.EVENT_BUS.unregister(this);
+            Illusion.INSTANCE.getEventBus().unsubscribe(this);
             onDisable();
         }
 

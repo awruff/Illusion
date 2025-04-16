@@ -1,7 +1,9 @@
 package org.example.illusion;
 
+import io.github.nevalackin.radbus.PubSub;
 import net.minecraftforge.fml.common.Mod;
 import org.example.illusion.features.commands.api.CommandManager;
+import org.example.illusion.features.events.api.Event;
 import org.example.illusion.features.gui.ClickGui;
 import org.example.illusion.features.modules.api.ModuleManager;
 
@@ -20,17 +22,27 @@ public class Illusion {
 
     private ModuleManager moduleManager;
     private CommandManager commandManager;
+    private PubSub<Event> eventBus;
     private ClickGui clickGui;
+    private DefaultListeners listeners;
 
     public final void initialize() {
-        // initialize stuff
         moduleManager = new ModuleManager();
+        commandManager = new CommandManager();
+
+        eventBus = PubSub.newInstance(System.err::println);
+        eventBus.subscribe(listeners = new DefaultListeners());
+
         clickGui = new ClickGui();
     }
 
     public final void shutdown() {
-        // uninitialize stuff (config saving, possibly self destruct?)
         moduleManager = null;
+        commandManager = null;
+
+        eventBus.unsubscribe(listeners);
+        eventBus = null;
+
         clickGui = null;
     }
 
@@ -42,13 +54,13 @@ public class Illusion {
         return commandManager;
     }
 
+    public PubSub<Event> getEventBus() {
+        return eventBus;
+    }
+
     public ClickGui getClickGui() {
         return clickGui;
     }
 }
 
-// TODO: Write module manager
-// TODO: Write command manager
-// TODO: Write event bus
 // TODO: Write events
-// TODO: Write docs

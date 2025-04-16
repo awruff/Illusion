@@ -8,6 +8,6 @@
   ],
   "client": [
     "client.MixinMinecraft",
-    "events.MixinMinecraft_Keyboard"
+    "events.MixinMinecraft_KeyPressEvent"
   ]
 }
