@@ -5,123 +5,121 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.ArrayList;
 
 public abstract class Module {
-    /** The name of the module. */
+    /** Module name */
     private final String name;
 
-    /** The category this module belongs to. */
+    /** Module category */
     private final Category category;
 
-    /** A list of settings registered to this module. */
+    /** Registered settings */
     private final ArrayList<String> settings;
 
-    /** The bind for activating this module. */
+    /** Bind for toggling the module */
     private int bind;
 
-    /** Indicates if the module is currently enabled. */
+    /** Whether the module is enabled */
     private boolean enabled;
 
     /**
-     * Constructs a Module with a specified name and category.
+     * Creates a new module.
      *
-     * @param name     the name of the module
-     * @param category the category this module belongs to
+     * @param name     Module name
+     * @param category Module category
      */
     public Module(final String name, final Category category) {
         this.name = name;
         this.category = category;
-
         this.bind = 0;
         this.settings = new ArrayList<>();
     }
 
     /**
-     * Constructs a Module with a specified name, category, and bind.
+     * Creates a new module with a key bind.
      *
-     * @param name     the name of the module
-     * @param category the category the module belongs to
-     * @param bind     the bind for the module
+     * @param name     Module name
+     * @param category Module category
+     * @param bind     Module default bind
      */
     public Module(final String name, final Category category, final int bind) {
         this.name = name;
         this.category = category;
         this.bind = bind;
-
         this.settings = new ArrayList<>();
     }
 
-    /**
-     * Enables the module.
-     */
+    /** Enables the module */
     public final void enable() {
-        enabled = true;
+        setEnabled(true);
     }
 
-    /**
-     * Disables the module.
-     */
+    /** Disables the module */
     public final void disable() {
-        enabled = false;
+        setEnabled(false);
     }
 
     /**
      * Toggles the module.
      *
-     * @return the new state of the module
+     * @return new state
      */
     public final boolean toggle() {
-        return enabled = !enabled;
+        return setEnabled(!enabled);
     }
 
-    public final void setEnabled(final boolean enabled) {
-        if (this.enabled == enabled) {
-            return;
-        } else {
-            this.enabled = enabled;
-        }
+    /**
+     * Enables or disables the module.
+     *
+     * @param enabled current enabled status
+     */
+    public final boolean setEnabled(final boolean enabled) {
+        this.enabled = enabled;
 
-        if (this.enabled) {
+        if (enabled) {
             MinecraftForge.EVENT_BUS.register(this);
             onEnable();
         } else {
             MinecraftForge.EVENT_BUS.unregister(this);
             onDisable();
         }
+
+        return enabled;
     }
 
     /**
-     * Gets the key bind for this module.
-     *
-     * @return the bind keycode
+     * @return current bind
      */
     public final int getBind() {
         return bind;
     }
 
     /**
-     * Sets the key bind for this module.
+     * Sets the bind.
      *
-     * @param bind the new bind keycode
+     * @param bind the key
      */
     public final void setBind(final int bind) {
         this.bind = bind;
     }
 
     /**
-     * Registers a new setting for this module.
+     * Registers a new setting.
      *
-     * @param setting the setting to register
+     * @param setting Setting name
      */
     protected final void register(final String setting) {
         settings.add(setting);
     }
 
     /**
-     * @return a list of registered settings.
+     * @return List of settings
      */
     public final ArrayList<String> getSettings() {
         return settings;
     }
 
+    /** Called when the module is enabled */
     public void onEnable() {}
+
+    /** Called when the module is disabled */
     public void onDisable() {}
 }

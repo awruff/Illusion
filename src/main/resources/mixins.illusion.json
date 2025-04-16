@@ -4,6 +4,9 @@
   "package": "org.example.illusion.mixins",
   "refmap": "mixins.${mod_id}.refmap.json",
   "mixins": [
-    "forge.ModListMixin"
+    "forge.MixinModList"
+  ],
+  "client": [
+    "client.MixinMinecraft"
   ]
 }

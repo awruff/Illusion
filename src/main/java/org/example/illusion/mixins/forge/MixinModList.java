@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(value = FMLHandshakeMessage.ModList.class, remap = false)
-public class ModListMixin {
+public class MixinModList {
     @Shadow private Map<String,String> modTags;
 
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
-    private void removeMod(List<ModContainer> modList, CallbackInfo ci) {
+    private void illusion$removeID(List<ModContainer> modList, CallbackInfo ci) {
         if (!Wrapper.isSinglePlayer()) {
             modTags.remove(Illusion.MODID);
         }
