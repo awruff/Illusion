@@ -1,6 +1,8 @@
 package org.example.illusion;
 
 import net.minecraftforge.fml.common.Mod;
+import org.example.illusion.features.gui.ClickGui;
+import org.example.illusion.features.modules.api.ModuleManager;
 
 @Mod(
         modid = Illusion.MODID,
@@ -15,12 +17,27 @@ public class Illusion {
     @Mod.Instance(MODID)
     public static Illusion INSTANCE;
 
+    private ModuleManager moduleManager;
+    private ClickGui clickGui;
+
     public final void initialize() {
         // initialize stuff
+        moduleManager = new ModuleManager();
+        clickGui = new ClickGui();
     }
 
     public final void shutdown() {
         // uninitialize stuff (config saving, possibly self destruct?)
+        moduleManager = null;
+        clickGui = null;
+    }
+
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
+
+    public ClickGui getClickGui() {
+        return clickGui;
     }
 }
 
