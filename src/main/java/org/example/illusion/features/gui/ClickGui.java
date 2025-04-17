@@ -6,6 +6,8 @@ public class ClickGui extends GuiScreen {
     public void drawScreen(int x, int y, float delta) {
         drawDefaultBackground();
 
-        System.out.println(x + " " + y + " " + delta);
+        String debug = x + " " + y + " " + delta;
+
+        fontRendererObj.drawString(debug, 5, 5, 0xffffff);
     }
 }

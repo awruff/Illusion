@@ -8,6 +8,8 @@ import org.example.illusion.utils.Wrapper;
 
 @CommandInfo(name = "toggle", description = "Toggles the provided module.")
 public class Toggle extends Command {
+
+    // FIXME: Doesnt open the GUI
     @Override
     public void main(String[] args) {
         if (args.length != 1) {
