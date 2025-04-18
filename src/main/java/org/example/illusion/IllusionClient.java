@@ -4,7 +4,7 @@ import io.github.nevalackin.radbus.PubSub;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.example.illusion.api.commands.CommandManager;
-import org.example.illusion.api.events.Event;
+import org.example.illusion.api.events.types.Event;
 import org.example.illusion.api.modules.ModuleManager;
 import org.example.illusion.impl.gui.ClickGui;
 

@@ -1,5 +1,6 @@
 package org.example.illusion.api.modules;
 
+import org.example.illusion.api.modules.types.Category;
 import org.lwjgl.input.Keyboard;
 
 import java.lang.annotation.Retention;

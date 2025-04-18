@@ -1,7 +1,7 @@
 package org.example.illusion.impl.modules.client;
 
 import org.example.illusion.IllusionClient;
-import org.example.illusion.api.modules.Category;
+import org.example.illusion.api.modules.types.Category;
 import org.example.illusion.api.modules.Module;
 import org.example.illusion.api.modules.ModuleInfo;
 import org.example.illusion.utils.Wrapper;

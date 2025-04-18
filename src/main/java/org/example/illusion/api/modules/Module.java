@@ -2,6 +2,7 @@ package org.example.illusion.api.modules;
 
 import org.apache.commons.lang3.Validate;
 import org.example.illusion.IllusionClient;
+import org.example.illusion.api.modules.types.Category;
 
 public abstract class Module {
     private final String name;
