@@ -54,3 +54,8 @@ public final class IllusionClient {
         return clickGui;
     }
 }
+
+// TODO: Write own eventbus
+// TODO: Create settings api
+// TODO: More events
+// TODO: Click gui
