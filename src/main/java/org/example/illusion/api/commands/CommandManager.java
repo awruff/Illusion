@@ -3,7 +3,7 @@ package org.example.illusion.api.commands;
 import io.github.nevalackin.radbus.Listen;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.api.Manager;
-import org.example.illusion.impl.commands.Toggle;
+import org.example.illusion.impl.commands.ToggleCommand;
 import org.example.illusion.impl.events.ChatSendEvent;
 import org.example.illusion.utils.Wrapper;
 
@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class CommandManager extends Manager<Command> {
     public CommandManager() {
         super(Arrays.asList(
-                new Toggle()
+                new ToggleCommand()
         ));
 
         IllusionClient.getInstance().getEventBus().subscribe(this);

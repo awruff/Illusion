@@ -7,7 +7,7 @@ import org.example.illusion.api.modules.Module;
 import org.example.illusion.utils.Wrapper;
 
 @CommandInfo(name = "toggle", description = "Toggles the provided module.")
-public class Toggle extends Command {
+public class ToggleCommand extends Command {
 
     // FIXME: Can't open the GUI
     @Override
