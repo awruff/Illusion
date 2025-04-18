@@ -1,8 +1,8 @@
 package org.example.illusion.mixins.events;
 
 import net.minecraft.client.entity.EntityPlayerSP;
-import org.example.illusion.Illusion;
-import org.example.illusion.features.events.impl.ChatSendEvent;
+import org.example.illusion.IllusionClient;
+import org.example.illusion.impl.events.ChatSendEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public class MixinEntityPlayerSP_ChatSendEvent {
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     private void illusion$publishChatSend(String message, CallbackInfo ci) {
-        Illusion.INSTANCE.getEventBus().publish(illusion$chatSendEvent = new ChatSendEvent(message));
+        IllusionClient.getInstance().getEventBus().publish(illusion$chatSendEvent = new ChatSendEvent(message));
 
         if (illusion$chatSendEvent.isCancelled()) ci.cancel();
     }

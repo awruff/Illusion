@@ -1,8 +1,8 @@
 package org.example.illusion.mixins.events;
 
 import net.minecraft.client.Minecraft;
-import org.example.illusion.Illusion;
-import org.example.illusion.features.events.impl.KeyPressEvent;
+import org.example.illusion.IllusionClient;
+import org.example.illusion.impl.events.KeyPressEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,7 +13,7 @@ public class MixinMinecraft_KeyPressEvent {
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;dispatchKeypresses()V"))
     private void illusion$publishKeyPress(CallbackInfo ci) {
-        Illusion.INSTANCE.getEventBus().publish(new KeyPressEvent());
+        IllusionClient.getInstance().getEventBus().publish(new KeyPressEvent());
     }
 
 }

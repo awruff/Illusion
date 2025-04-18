@@ -1,4 +1,4 @@
-package org.example.illusion.features.modules.api;
+package org.example.illusion.api.modules;
 
 import org.lwjgl.input.Keyboard;
 

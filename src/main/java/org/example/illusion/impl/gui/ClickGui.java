@@ -1,4 +1,4 @@
-package org.example.illusion.features.gui;
+package org.example.illusion.impl.gui;
 
 import net.minecraft.client.gui.GuiScreen;
 

@@ -37,5 +37,4 @@ dependencies {
     implementation(shade("io.github.nevalackin:radbus:1.0.0") {
         isTransitive = false
     })
-
 }

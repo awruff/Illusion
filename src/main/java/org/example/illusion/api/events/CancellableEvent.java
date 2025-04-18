@@ -1,4 +1,4 @@
-package org.example.illusion.features.events.api;
+package org.example.illusion.api.events;
 
 public class CancellableEvent implements Event {
     private boolean cancelled;

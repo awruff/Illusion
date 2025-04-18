@@ -1,7 +1,7 @@
-package org.example.illusion.features.modules.api;
+package org.example.illusion.api.modules;
 
 import org.apache.commons.lang3.Validate;
-import org.example.illusion.Illusion;
+import org.example.illusion.IllusionClient;
 
 public abstract class Module {
     private final String name;
@@ -50,10 +50,10 @@ public abstract class Module {
         this.enabled = enabled;
 
         if (enabled) {
-            Illusion.INSTANCE.getEventBus().subscribe(this);
+            IllusionClient.getInstance().getEventBus().subscribe(this);
             onEnable();
         } else {
-            Illusion.INSTANCE.getEventBus().unsubscribe(this);
+            IllusionClient.getInstance().getEventBus().unsubscribe(this);
             onDisable();
         }
 

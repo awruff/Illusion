@@ -2,7 +2,7 @@ package org.example.illusion.mixins.forge;
 
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.network.handshake.FMLHandshakeMessage;
-import org.example.illusion.Illusion;
+import org.example.illusion.IllusionClient;
 import org.example.illusion.utils.Wrapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +20,7 @@ public class MixinModList {
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
     private void illusion$removeID(List<ModContainer> modList, CallbackInfo ci) {
         if (!Wrapper.isSinglePlayer()) {
-            modTags.remove(Illusion.MODID);
+            modTags.remove(IllusionClient.ID);
         }
     }
 }
