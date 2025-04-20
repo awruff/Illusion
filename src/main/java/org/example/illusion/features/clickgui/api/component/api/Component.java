@@ -1,28 +1,30 @@
 package org.example.illusion.features.clickgui.api.component.api;
 
-import org.example.illusion.features.module.api.Module;
-import org.example.illusion.features.clickgui.impl.ClickGui;
-import org.example.illusion.features.clickgui.api.setting.api.Setting;
-
 public abstract class Component {
-    public float x, y, x2, y2;
-    public ClickGui parent;
-    public Module module;
-    public Setting setting;
+    public void renderComponent() {}
 
-    public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    public void updateComponent(int mouseX, int mouseY) {}
+
+    public void mouseClicked(int mouseX, int mouseY, int button) {}
+
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
+
+    public int getParentHeight() {
+        return 0;
     }
 
-    public void mouseReleased(int mouseX, int mouseY, int state) {
+    public void keyTyped(char typedChar, int key) {}
+
+    public void setOff(int newOff) {}
+
+    public int getHeight() {
+        return 0;
     }
 
-    public void drawScreen(int mouseX, int mouseY) {
-    }
-
-    public void keyTyped(char typedChar, int keyCode) {
-    }
-
-    public final boolean isHovering(int mouseX, int mouseY, float x, float y, float x2, float y2) {
-        return (mouseX > x && mouseX < x2) && (mouseY > y && mouseY < y2);
+    public boolean isHovering(int x, int y, Frame frame, int offset) {
+        return x > frame.getX() &&
+                x < frame.getX() + frame.getWidth() &&
+                y > frame.getY() + offset &&
+                y < frame.getY() + 12 + offset;
     }
 }

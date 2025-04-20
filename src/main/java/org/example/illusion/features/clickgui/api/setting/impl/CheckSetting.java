@@ -6,8 +6,8 @@ import org.example.illusion.features.module.api.Module;
 public class CheckSetting extends Setting {
     private boolean enabled;
 
-    public CheckSetting(String name, String description, Module parent, boolean enabled) {
-        super(name, description, parent);
+    public CheckSetting(String name, Module parent, boolean enabled) {
+        super(name, parent);
 
         this.enabled = enabled;
     }

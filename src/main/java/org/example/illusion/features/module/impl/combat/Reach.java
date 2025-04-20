@@ -9,11 +9,7 @@ import org.example.illusion.features.module.api.ModuleInfo;
 
 @ModuleInfo(name = "Reach", category = Category.COMBAT)
 public class Reach extends Module {
-    private final SliderSetting distance = new SliderSetting(
-            "Distance",
-            "blah blah, descriptions are unused",
-            this, 3f, 6f, 3.5f
-    );
+    private final SliderSetting distance = new SliderSetting("Distance", this, 3f, 6f, 3.5f);
 
     public Reach() {
         addSetting(distance);

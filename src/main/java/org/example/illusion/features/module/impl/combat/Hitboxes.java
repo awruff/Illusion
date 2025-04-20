@@ -9,11 +9,7 @@ import org.example.illusion.features.module.api.ModuleInfo;
 
 @ModuleInfo(name = "Hitboxes", category = Category.COMBAT)
 public class Hitboxes extends Module {
-    private final SliderSetting expand = new SliderSetting(
-            "Expand",
-            "blah blah, descriptions are unused",
-            this, 1f, 10f, 2f
-    );
+    private final SliderSetting expand = new SliderSetting("Expand", this, 1f, 10f, 2f);
 
     public Hitboxes() {
         addSetting(expand);

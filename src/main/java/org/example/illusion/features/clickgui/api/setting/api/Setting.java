@@ -5,12 +5,11 @@ import org.example.illusion.features.module.api.Module;
 
 public class Setting implements Feature {
     private final String name;
-    private final String description;
+    private final String description = "UNUSED";
     private final Module parent;
 
-    public Setting(String name, String description, Module parent) {
+    public Setting(String name, Module parent) {
         this.name = name;
-        this.description = description;
         this.parent = parent;
     }
 
