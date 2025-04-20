@@ -1,4 +1,4 @@
-package org.example.illusion.api.commands;
+package org.example.illusion.features.commands.api;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

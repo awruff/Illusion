@@ -7,7 +7,7 @@
     "forge.MixinModList"
   ],
   "client": [
-    "events.MixinEntityPlayerSP_ChatSendEvent",
+    "events.MixinEntityPlayerSP_SendMessageEvent",
     "events.MixinMinecraft_KeyPressEvent"
   ]
 }

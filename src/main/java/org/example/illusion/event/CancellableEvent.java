@@ -1,6 +1,7 @@
-package org.example.illusion.api.events.types;
+package org.example.illusion.event;
 
 public class CancellableEvent implements Event {
+
     private boolean cancelled;
 
     public boolean isCancelled() {
@@ -12,6 +13,7 @@ public class CancellableEvent implements Event {
     }
 
     public void setCancelled() {
-        setCancelled(true);
+        this.cancelled = true;
     }
+
 }

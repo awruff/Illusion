@@ -2,7 +2,7 @@ package org.example.illusion.mixins.events;
 
 import net.minecraft.client.Minecraft;
 import org.example.illusion.IllusionClient;
-import org.example.illusion.impl.events.KeyPressEvent;
+import org.example.illusion.event.impl.input.KeyPressEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
