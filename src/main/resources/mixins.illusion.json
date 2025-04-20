@@ -7,6 +7,7 @@
     "forge.MixinModList"
   ],
   "client": [
+    "events.EntityRenderer_HurtShake",
     "events.EntityRenderer_RayTraceEntity",
     "events.MixinEntityPlayerSP_SendMessage",
     "events.MixinMinecraft_KeyPress"
