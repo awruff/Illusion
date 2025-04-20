@@ -54,8 +54,8 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
+          automatic_release_tag: "alpha"
+          prerelease: false
           title: "Illusion - Alpha ${{ env.sha_short }}"
           files: |
-            build/libs/*.jar
+            build/libs/*-ALPHA.jar
