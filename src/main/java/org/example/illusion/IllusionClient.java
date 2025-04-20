@@ -4,6 +4,7 @@ import io.github.nevalackin.radbus.PubSub;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.example.illusion.event.Event;
+import org.example.illusion.features.clickgui.impl.ClickGui;
 import org.example.illusion.features.commands.api.CommandManager;
 import org.example.illusion.features.module.api.ModuleManager;
 
@@ -23,16 +24,22 @@ public final class IllusionClient {
     private PubSub<Event> eventBus;
     private ModuleManager moduleManager;
     private CommandManager commandManager;
+    private ClickGui clickGui;
 
     @Mod.EventHandler
     public void onInitialization(FMLInitializationEvent event) {
         eventBus = PubSub.newInstance(System.err::println);
         moduleManager = new ModuleManager();
         commandManager = new CommandManager();
+        clickGui = new ClickGui();
     }
 
     public static IllusionClient getInstance() {
         return INSTANCE;
+    }
+
+    public PubSub<Event> getEventBus() {
+        return eventBus;
     }
 
     public ModuleManager getModuleManager() {
@@ -43,8 +50,8 @@ public final class IllusionClient {
         return commandManager;
     }
 
-    public PubSub<Event> getEventBus() {
-        return eventBus;
+    public ClickGui getClickGui() {
+        return clickGui;
     }
 }
 

@@ -11,18 +11,18 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityPlayerSP.class)
-public class MixinEntityPlayerSP_SendMessageEvent {
-    @Unique private SendMessageEvent illusion$chatSendEvent;
+public class MixinEntityPlayerSP_SendMessage {
+    @Unique private SendMessageEvent illusion$sendMessageEvent;
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
-    private void illusion$publishChatSend(String message, CallbackInfo ci) {
-        IllusionClient.getInstance().getEventBus().publish(illusion$chatSendEvent = new SendMessageEvent(message));
+    private void illusion$publishSendMessage(String message, CallbackInfo ci) {
+        IllusionClient.getInstance().getEventBus().publish(illusion$sendMessageEvent = new SendMessageEvent(message));
 
-        if (illusion$chatSendEvent.isCancelled()) ci.cancel();
+        if (illusion$sendMessageEvent.isCancelled()) ci.cancel();
     }
 
     @ModifyVariable(method = "sendChatMessage", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private String illusion$setMessage(String value) {
-        return illusion$chatSendEvent.getMessage();
+        return illusion$sendMessageEvent.getMessage();
     }
 }

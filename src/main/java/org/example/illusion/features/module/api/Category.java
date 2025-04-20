@@ -4,6 +4,6 @@ public enum Category {
     COMBAT,
     MOVEMENT,
     PLAYER,
-    MISCELLANEOUS,
+    MISC,
     VISUALS
 }

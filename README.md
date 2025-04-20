@@ -8,6 +8,9 @@ This is a full rewrite, I do not have the original code for Illusion, nor do I o
 
 ---
 
+## Credits (for when I do skid)
+- [ClickGui](https://github.com/Exeos/ClickGui): I want this client to be usable before 2035
+
 ## What?
 Illusion is a ghost client for 1.8.9 that I originally made for Weave Mod Loader back in 2023. Countless people have contacted me about it, so I decided to revive it.
 

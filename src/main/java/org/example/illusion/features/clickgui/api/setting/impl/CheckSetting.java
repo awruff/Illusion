@@ -1,0 +1,23 @@
+package org.example.illusion.features.clickgui.api.setting.impl;
+
+import org.example.illusion.features.clickgui.api.setting.api.Setting;
+import org.example.illusion.features.module.api.Module;
+
+public class CheckSetting extends Setting {
+    private boolean enabled;
+
+    public CheckSetting(String name, String description, Module parent, boolean enabled) {
+        super(name, description, parent);
+
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+}
+

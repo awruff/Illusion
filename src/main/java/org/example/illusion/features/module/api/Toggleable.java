@@ -25,7 +25,7 @@ public class Toggleable {
         }
     }
 
-    public final boolean isEnabled(){
+    public final boolean isEnabled() {
         return enabled;
     }
 
