@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.2
         with:
           name: Built Jar
-          path: build/libs/Illusion Client-0.1.0-ALPHA.jar
+          path: build/libs/*-ALPHA.jar
 
       - name: Automatic Release
         uses: marvinpinto/action-automatic-releases@v1.2.1
