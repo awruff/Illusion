@@ -26,8 +26,8 @@ public class Wrapper {
     }
 
     public static void addChatMessage(String message) {
-        // TODO: Write system so color codes are easier
-        getPlayer().addChatMessage(new ChatComponentText("\2478[\2475Illusion\2478]\2477 " + message));
+        String prefix = Colors.DARK_GRAY + "[" + Colors.DARK_PURPLE + "Illusion" + Colors.DARK_GRAY + "]" + Colors.GRAY + " ";
+        getPlayer().addChatMessage(new ChatComponentText(prefix + message));
     }
 
     public static FontRenderer getFontRenderer() {

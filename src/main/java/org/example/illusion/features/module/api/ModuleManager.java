@@ -10,6 +10,7 @@ import org.example.illusion.features.module.impl.misc.ClickGuiModule;
 import org.example.illusion.features.module.impl.misc.TestModule;
 import org.example.illusion.features.module.impl.movement.Sprint;
 import org.example.illusion.features.module.impl.player.InventoryMove;
+import org.example.illusion.features.module.impl.visuals.ModOverlay;
 import org.example.illusion.features.module.impl.visuals.NoHurtCam;
 
 import java.util.ArrayList;
@@ -24,13 +25,14 @@ public class ModuleManager extends Manager<Module> {
                 new TestModule(),
                 new Sprint(),
                 new InventoryMove(),
+                new ModOverlay(),
                 new NoHurtCam()
         ));
 
         IllusionClient.getInstance().getEventBus().subscribe(this);
     }
 
-    public ArrayList<Module> getElements(Category category) {
+    public final ArrayList<Module> getElements(Category category) {
         ArrayList<Module> result = new ArrayList<>();
         for (Module element : elements) {
             if (element.getCategory().equals(category)) {
