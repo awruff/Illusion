@@ -3,6 +3,8 @@ package org.example.illusion.utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
@@ -30,5 +32,13 @@ public class Wrapper {
 
     public static FontRenderer getFontRenderer() {
         return getClient().fontRendererObj;
+    }
+
+    public static GuiScreen getScreen() {
+        return getClient().currentScreen;
+    }
+
+    public static GameSettings getSettings() {
+        return getClient().gameSettings;
     }
 }

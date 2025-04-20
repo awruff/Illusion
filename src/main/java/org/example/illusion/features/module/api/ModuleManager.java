@@ -8,6 +8,8 @@ import org.example.illusion.features.module.impl.combat.Hitboxes;
 import org.example.illusion.features.module.impl.combat.Reach;
 import org.example.illusion.features.module.impl.misc.ClickGuiModule;
 import org.example.illusion.features.module.impl.misc.TestModule;
+import org.example.illusion.features.module.impl.movement.Sprint;
+import org.example.illusion.features.module.impl.player.InventoryMove;
 import org.example.illusion.features.module.impl.visuals.NoHurtCam;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class ModuleManager extends Manager<Module> {
                 new Reach(),
                 new ClickGuiModule(),
                 new TestModule(),
+                new Sprint(),
+                new InventoryMove(),
                 new NoHurtCam()
         ));
 
