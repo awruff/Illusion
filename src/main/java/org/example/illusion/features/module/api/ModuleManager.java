@@ -12,6 +12,7 @@ import org.example.illusion.features.module.impl.movement.Sprint;
 import org.example.illusion.features.module.impl.player.InventoryMove;
 import org.example.illusion.features.module.impl.visuals.ModOverlay;
 import org.example.illusion.features.module.impl.visuals.NoHurtCam;
+import org.example.illusion.features.module.impl.visuals.PlayerESP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +27,8 @@ public class ModuleManager extends Manager<Module> {
                 new Sprint(),
                 new InventoryMove(),
                 new ModOverlay(),
-                new NoHurtCam()
+                new NoHurtCam(),
+                new PlayerESP()
         ));
 
         IllusionClient.getInstance().getEventBus().subscribe(this);

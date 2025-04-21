@@ -12,7 +12,9 @@
     "events.EntityPlayerSP_Sprint",
     "events.EntityRenderer_HurtShake",
     "events.EntityRenderer_RayTraceEntity",
+    "events.EntityRenderer_Render3D",
     "events.GuiIngameForge_Render2D",
-    "events.Minecraft_KeyPress"
+    "events.Minecraft_KeyPress",
+    "events.Minecraft_WorldLoad"
   ]
 }

@@ -4,9 +4,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class Wrapper {
     public static Minecraft getClient() {
@@ -21,8 +25,16 @@ public class Wrapper {
         return getClient().theWorld;
     }
 
+    public static List<EntityPlayer> getLoadedPlayers() {
+        return getWorld().playerEntities;
+    }
+
     public static boolean isSinglePlayer() {
         return getClient().isIntegratedServerRunning();
+    }
+
+    public static boolean isInFirstPerson() {
+        return getSettings().thirdPersonView == 0;
     }
 
     public static void addChatMessage(String message) {
@@ -40,5 +52,9 @@ public class Wrapper {
 
     public static GameSettings getSettings() {
         return getClient().gameSettings;
+    }
+
+    public static RenderManager getRenderManager() {
+        return getClient().getRenderManager();
     }
 }
