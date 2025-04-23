@@ -54,6 +54,10 @@ public class Wrapper {
         return getClient().gameSettings;
     }
 
+    public static int getScale() {
+        return getSettings().guiScale;
+    }
+
     public static RenderManager getRenderManager() {
         return getClient().getRenderManager();
     }

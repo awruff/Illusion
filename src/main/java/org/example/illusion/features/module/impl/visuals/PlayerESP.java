@@ -90,7 +90,7 @@ public class PlayerESP extends Module {
             float[] bounds = new float[]{Float.MAX_VALUE, Float.MAX_VALUE, -1.0F, -1.0F};
 
             for (double[] vector : vectors) {
-                projection = GLUtils.project2D((float) vector[0], (float) vector[1], (float) vector[2], 2);
+                projection = GLUtils.project2D((float) vector[0], (float) vector[1], (float) vector[2], Wrapper.getScale());
                 if (projection != null && projection[2] >= 0.0F && projection[2] < 1.0F) {
                     float pX = projection[0];
                     float pY = projection[1];
