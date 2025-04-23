@@ -1,0 +1,15 @@
+[versions]
+dgt = "2.33.+"
+polymixin = "0.8.4+build.+"
+radbus = "1.0.0"
+
+[libraries]
+polymixin = { group = "org.polyfrost", name = "polymixin", version.ref = "polymixin" }
+radbus = { group = "io.github.nevalackin", name = "radbus", version.ref = "radbus" }
+
+[plugins]
+dgt = { id = "dev.deftu.gradle.tools", version.ref = "dgt" }
+dgt-resources = { id = "dev.deftu.gradle.tools.resources", version.ref = "dgt" }
+dgt-bloom = { id = "dev.deftu.gradle.tools.bloom", version.ref = "dgt" }
+dgt-shadow = { id = "dev.deftu.gradle.tools.shadow", version.ref = "dgt" }
+dgt-loom = { id = "dev.deftu.gradle.tools.minecraft.loom", version.ref = "dgt" }
