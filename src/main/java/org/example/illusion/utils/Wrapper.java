@@ -7,7 +7,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -35,11 +34,6 @@ public class Wrapper {
 
     public static boolean isInFirstPerson() {
         return getSettings().thirdPersonView == 0;
-    }
-
-    public static void addChatMessage(String message) {
-        String prefix = Colors.DARK_GRAY + "[" + Colors.DARK_PURPLE + "Illusion" + Colors.DARK_GRAY + "]" + Colors.GRAY + " ";
-        getPlayer().addChatMessage(new ChatComponentText(prefix + message));
     }
 
     public static FontRenderer getFontRenderer() {
