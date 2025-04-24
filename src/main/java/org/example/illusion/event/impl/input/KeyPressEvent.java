@@ -3,7 +3,7 @@ package org.example.illusion.event.impl.input;
 import org.example.illusion.event.Event;
 import org.lwjgl.input.Keyboard;
 
-public class KeyPressEvent implements Event {
+public final class KeyPressEvent implements Event {
 
     private final int key;
     private final boolean down;

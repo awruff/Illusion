@@ -2,7 +2,7 @@ package org.example.illusion.event.impl.entity;
 
 import org.example.illusion.event.Event;
 
-public class RayTraceEntityEvent implements Event {
+public final class RayTraceEntityEvent implements Event {
     private float reach = 3.0F;
     private float borderMultiplier = 1.0F;
 

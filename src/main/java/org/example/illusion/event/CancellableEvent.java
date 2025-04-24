@@ -1,7 +1,6 @@
 package org.example.illusion.event;
 
 public class CancellableEvent implements Event {
-
     private boolean cancelled;
 
     public boolean isCancelled() {

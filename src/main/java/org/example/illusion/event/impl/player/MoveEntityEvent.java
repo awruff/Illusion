@@ -2,7 +2,7 @@ package org.example.illusion.event.impl.player;
 
 import org.example.illusion.event.CancellableEvent;
 
-public class MoveEntityEvent extends CancellableEvent {
+public final class MoveEntityEvent extends CancellableEvent {
 
     private double x;
     private double y;
