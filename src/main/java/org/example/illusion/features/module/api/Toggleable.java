@@ -1,7 +1,9 @@
-package org.example.illusion.features.api;
+package org.example.illusion.features.module.api;
 
 import org.example.illusion.IllusionClient;
 
+// ill move to general api when
+// I find it suitable for another feature
 public class Toggleable {
     private boolean enabled;
 
@@ -15,9 +17,9 @@ public class Toggleable {
 
             if (enabled) {
                 onEnable();
-//                IllusionClient.getInstance().getEventBus().subscribe(this);
+                IllusionClient.getInstance().getEventBus().subscribe(this);
             } else {
-//                IllusionClient.getInstance().getEventBus().unsubscribe(this);
+                IllusionClient.getInstance().getEventBus().unsubscribe(this);
                 onDisable();
             }
         }

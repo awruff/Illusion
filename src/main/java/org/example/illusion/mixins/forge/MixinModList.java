@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(value = FMLHandshakeMessage.ModList.class, remap = false)
-public class MixinModList_RemoveID {
+public class MixinModList {
     @Shadow private Map<String,String> modTags;
 
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
