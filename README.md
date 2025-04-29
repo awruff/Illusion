@@ -1,3 +1,8 @@
+## Discord
+A new discord for the development of Illusion.
+
+https://discord.gg/fnAgUUAz
+
 ## Illusion
 Back and better than ever (hopefully)
 
