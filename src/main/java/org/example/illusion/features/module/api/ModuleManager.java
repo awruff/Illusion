@@ -4,10 +4,12 @@ import io.github.nevalackin.radbus.Listen;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.event.impl.input.KeyPressEvent;
 import org.example.illusion.features.api.Manager;
+import org.example.illusion.features.module.impl.combat.AutoClicker;
 import org.example.illusion.features.module.impl.combat.Hitboxes;
 import org.example.illusion.features.module.impl.combat.Reach;
 import org.example.illusion.features.module.impl.misc.ClickGuiModule;
 import org.example.illusion.features.module.impl.misc.TestModule;
+import org.example.illusion.features.module.impl.misc.Weapons;
 import org.example.illusion.features.module.impl.movement.Sprint;
 import org.example.illusion.features.module.impl.player.InventoryMove;
 import org.example.illusion.features.module.impl.visuals.ModOverlay;
@@ -20,10 +22,12 @@ import java.util.Arrays;
 public class ModuleManager extends Manager<Module> {
     public ModuleManager() {
         super(Arrays.asList(
+                new AutoClicker(),
                 new Hitboxes(),
                 new Reach(),
                 new ClickGuiModule(),
                 new TestModule(),
+                new Weapons(),
                 new Sprint(),
                 new InventoryMove(),
                 new ModOverlay(),
