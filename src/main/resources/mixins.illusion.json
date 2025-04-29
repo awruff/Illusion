@@ -4,6 +4,7 @@
   "package": "org.example.illusion.mixins",
   "refmap": "mixins.${mod_id}.refmap.json",
   "mixins": [
+    "events.EntityLivingBase_JumpDelay",
     "forge.MixinModList"
   ],
   "client": [
@@ -14,7 +15,9 @@
     "events.EntityRenderer_RayTraceEntity",
     "events.EntityRenderer_Render3D",
     "events.GuiIngameForge_Render2D",
+    "events.Minecraft_HitDelay",
     "events.Minecraft_KeyPress",
+    "events.Minecraft_PlayerTick",
     "events.Minecraft_WorldLoad"
   ]
 }

@@ -6,10 +6,12 @@ import org.example.illusion.event.impl.input.KeyPressEvent;
 import org.example.illusion.features.api.Manager;
 import org.example.illusion.features.module.impl.combat.AutoClicker;
 import org.example.illusion.features.module.impl.combat.Hitboxes;
+import org.example.illusion.features.module.impl.combat.NoHitDelay;
 import org.example.illusion.features.module.impl.combat.Reach;
 import org.example.illusion.features.module.impl.misc.ClickGuiModule;
 import org.example.illusion.features.module.impl.misc.TestModule;
 import org.example.illusion.features.module.impl.misc.Weapons;
+import org.example.illusion.features.module.impl.movement.NoJumpDelay;
 import org.example.illusion.features.module.impl.movement.Sprint;
 import org.example.illusion.features.module.impl.player.InventoryMove;
 import org.example.illusion.features.module.impl.visuals.ModOverlay;
@@ -24,10 +26,12 @@ public class ModuleManager extends Manager<Module> {
         super(Arrays.asList(
                 new AutoClicker(),
                 new Hitboxes(),
+                new NoHitDelay(),
                 new Reach(),
                 new ClickGuiModule(),
                 new TestModule(),
                 new Weapons(),
+                new NoJumpDelay(),
                 new Sprint(),
                 new InventoryMove(),
                 new ModOverlay(),
