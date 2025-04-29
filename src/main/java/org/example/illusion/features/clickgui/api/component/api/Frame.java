@@ -5,8 +5,10 @@ import net.minecraft.client.gui.Gui;
 import org.example.illusion.IllusionClient;
 import org.example.illusion.features.clickgui.api.component.impl.ButtonComponent;
 import org.example.illusion.features.clickgui.impl.ClickGui;
+import org.example.illusion.features.clickgui.impl.Theme;
 import org.example.illusion.features.module.api.Category;
 import org.example.illusion.features.module.api.Module;
+import org.example.illusion.utils.FontUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -66,12 +68,12 @@ public class Frame {
         this.open = open;
     }
 
-    public void renderFrame(FontRenderer fontRenderer) {
-        Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, ClickGui.color);
+    public void renderFrame() {
+        Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, Theme.getMainColor().getRGB());
         GL11.glPushMatrix();
         GL11.glScalef(0.5f,0.5f, 0.5f);
-        fontRenderer.drawStringWithShadow(this.category.name(), (this.x + 2) * 2 + 5, (this.y + 2.5f) * 2 + 5, 0xFFFFFFFF);
-        fontRenderer.drawStringWithShadow(this.open ? "-" : "+", (this.x + this.width - 10) * 2 + 5, (this.y + 2.5f) * 2 + 5, -1);
+        FontUtils.drawString(this.category.name(), (this.x + 2) * 2 + 5, (this.y + 2.5f) * 2 + 5);
+        FontUtils.drawString(this.open ? "-" : "+", (this.x + this.width - 10) * 2 + 5, (this.y + 2.5f) * 2 + 5);
         GL11.glPopMatrix();
         if(this.open) {
             if(!this.components.isEmpty()) {

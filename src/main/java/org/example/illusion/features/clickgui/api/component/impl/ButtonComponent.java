@@ -12,7 +12,9 @@ import org.example.illusion.features.clickgui.api.setting.impl.CheckSetting;
 import org.example.illusion.features.clickgui.api.setting.impl.ComboSetting;
 import org.example.illusion.features.clickgui.api.setting.impl.SliderSetting;
 import org.example.illusion.features.clickgui.impl.ClickGui;
+import org.example.illusion.features.clickgui.impl.Theme;
 import org.example.illusion.features.module.api.Module;
+import org.example.illusion.utils.FontUtils;
 import org.example.illusion.utils.Wrapper;
 import org.lwjgl.opengl.GL11;
 
@@ -76,26 +78,25 @@ public class ButtonComponent extends Component {
                 parent.getX() + parent.getWidth(),
                 this.parent.getY() + 12 + this.offset,
                 this.isHovered ?
-                        (this.mod.isEnabled() ? new Color(0xFF222222).darker().getRGB() : 0xFF222222) :
-                        (this.mod.isEnabled() ? new Color(0xFF111111).darker().getRGB() : 0xFF111111)
+                        (this.mod.isEnabled() ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()) :
+                        (this.mod.isEnabled() ? Theme.getBackColor().darker().darker().getRGB() : Theme.getBackColor().darker().getRGB())
         );
 
         GL11.glPushMatrix();
         GL11.glScalef(0.5f, 0.5f, 0.5f);
 
-        Wrapper.getFontRenderer().drawStringWithShadow(
+        FontUtils.drawString(
                 this.mod.getName(),
                 (parent.getX() + 2) * 2,
                 (parent.getY() + offset + 2) * 2 + 4,
-                this.mod.isEnabled() ? 0x999999 : -1
+                this.mod.isEnabled() ? Theme.getMainColor().getRGB() : -1
         );
 
         if (this.subcomponents.size() > 2) {
-            Wrapper.getFontRenderer().drawStringWithShadow(
+            FontUtils.drawString(
                     this.open ? "-" : "+",
                     (parent.getX() + parent.getWidth() - 10) * 2,
-                    (parent.getY() + offset + 2) * 2 + 4,
-                    -1
+                    (parent.getY() + offset + 2) * 2 + 4
             );
         }
 

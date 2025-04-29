@@ -31,7 +31,7 @@ public class ClickGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         for (Frame frame : frames) {
-            frame.renderFrame(this.fontRendererObj);
+            frame.renderFrame();
             frame.updatePosition(mouseX, mouseY);
             for (Component comp : frame.getComponents()) {
                 comp.updateComponent(mouseX, mouseY);

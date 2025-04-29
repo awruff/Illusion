@@ -3,8 +3,10 @@ package org.example.illusion.features.clickgui.api.component.impl.sub;
 import net.minecraft.client.gui.Gui;
 import org.example.illusion.features.clickgui.api.component.api.Component;
 import org.example.illusion.features.clickgui.api.component.impl.ButtonComponent;
+import org.example.illusion.features.clickgui.impl.Theme;
 import org.example.illusion.features.module.api.Module;
 import org.example.illusion.features.module.impl.misc.ClickGuiModule;
+import org.example.illusion.utils.FontUtils;
 import org.example.illusion.utils.Wrapper;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -43,7 +45,7 @@ public class KeybindComponent extends Component {
                 parent.parent.getY() + offset,
                 parent.parent.getX() + parent.parent.getWidth(),
                 parent.parent.getY() + offset + 12,
-                this.hovered ? 0xFF222222 : 0xFF111111
+                this.hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
 
         Gui.drawRect(
@@ -51,17 +53,16 @@ public class KeybindComponent extends Component {
                 parent.parent.getY() + offset,
                 parent.parent.getX() + 2,
                 parent.parent.getY() + offset + 12,
-                0xFF111111
+                Theme.getBackColor().getRGB()
         );
 
         GL11.glPushMatrix();
         GL11.glScalef(0.5f,0.5f, 0.5f);
 
-        Wrapper.getFontRenderer().drawStringWithShadow(
+        FontUtils.drawString(
                 binding ? "Press a key..." : ("Key: " + Keyboard.getKeyName(module.getBind())),
                 (parent.parent.getX() + 7) * 2,
-                (parent.parent.getY() + offset + 2) * 2 + 5,
-                -1
+                (parent.parent.getY() + offset + 2) * 2 + 5
         );
 
         GL11.glPopMatrix();

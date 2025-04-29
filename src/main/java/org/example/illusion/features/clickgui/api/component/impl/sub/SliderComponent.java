@@ -4,6 +4,8 @@ import net.minecraft.client.gui.Gui;
 import org.example.illusion.features.clickgui.api.component.api.Component;
 import org.example.illusion.features.clickgui.api.component.impl.ButtonComponent;
 import org.example.illusion.features.clickgui.api.setting.impl.SliderSetting;
+import org.example.illusion.features.clickgui.impl.Theme;
+import org.example.illusion.utils.FontUtils;
 import org.example.illusion.utils.Wrapper;
 import org.lwjgl.opengl.GL11;
 
@@ -39,7 +41,7 @@ public class SliderComponent extends Component {
                 parent.parent.getY() + offset,
                 parent.parent.getX() + parent.parent.getWidth(),
                 parent.parent.getY() + offset + 12,
-                this.hovered ? 0xFF222222 : 0xFF111111
+                this.hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
 
         final int drag = (int)(setting.getValue() / setting.getMax() * this.parent.parent.getWidth());
@@ -49,7 +51,7 @@ public class SliderComponent extends Component {
                 parent.parent.getY() + offset,
                 parent.parent.getX() + (int) renderWidth,
                 parent.parent.getY() + offset + 12,
-                hovered ? 0xFF555555 : 0xFF444444
+                hovered ? Theme.getMainColor().darker().getRGB() : Theme.getMainColor().getRGB()
         );
 
         Gui.drawRect(
@@ -57,17 +59,16 @@ public class SliderComponent extends Component {
                 parent.parent.getY() + offset,
                 parent.parent.getX() + 2,
                 parent.parent.getY() + offset + 12,
-                0xFF111111
+                Theme.getBackColor().getRGB()
         );
 
         GL11.glPushMatrix();
         GL11.glScalef(0.5f,0.5f, 0.5f);
 
-        Wrapper.getFontRenderer().drawStringWithShadow(
+        FontUtils.drawString(
                 setting.getName() + ": " + setting.getValue() ,
                 (parent.parent.getX()* 2 + 15),
-                (parent.parent.getY() + offset + 2) * 2 + 5,
-                -1
+                (parent.parent.getY() + offset + 2) * 2 + 5
         );
 
         GL11.glPopMatrix();

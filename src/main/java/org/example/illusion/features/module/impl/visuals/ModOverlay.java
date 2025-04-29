@@ -5,13 +5,10 @@ import org.example.illusion.event.impl.render.Render2DEvent;
 import org.example.illusion.features.module.api.Category;
 import org.example.illusion.features.module.api.Module;
 import org.example.illusion.features.module.api.ModuleInfo;
-import org.example.illusion.utils.Colors;
-import org.example.illusion.utils.FontUtils;
 
 @ModuleInfo(name = "ModOverlay", category = Category.VISUALS)
 public class ModOverlay extends Module {
     @Listen
     public void onRender2D(Render2DEvent event) {
-        FontUtils.drawString(Colors.DARK_PURPLE + "I" + Colors.DARK_GRAY + "llusion", 3, 3, -1);
     }
 }

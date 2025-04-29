@@ -6,6 +6,7 @@ import net.minecraft.util.AxisAlignedBB;
 import org.example.illusion.event.impl.render.Render2DEvent;
 import org.example.illusion.event.impl.render.Render3DEvent;
 import org.example.illusion.event.impl.world.WorldLoadEvent;
+import org.example.illusion.features.clickgui.impl.Theme;
 import org.example.illusion.features.module.api.Category;
 import org.example.illusion.features.module.api.Module;
 import org.example.illusion.features.module.api.ModuleInfo;
@@ -13,19 +14,13 @@ import org.example.illusion.utils.GLUtils;
 import org.example.illusion.utils.RenderUtils;
 import org.example.illusion.utils.Wrapper;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+// FIXME: Renders over hotbar.
 @ModuleInfo(name = "ESP", category = Category.VISUALS)
 public class PlayerESP extends Module {
     private final Map<EntityPlayer, float[]> positions = new HashMap<>();
-
-    // TODO: Client themes (like I made for the original illusion)
-    private final Color color = new Color(255, 255, 255);
-    private final Color colort = new Color(255, 255, 255, 50);
-
-    private final Color black = new Color(0, 0, 0);
 
     @Listen
     public void onRender2D(Render2DEvent event) {
@@ -36,10 +31,10 @@ public class PlayerESP extends Module {
 
             float[] positions = this.positions.get(player);
 
-            RenderUtils.drawGradientRect(positions, colort.getRGB(), colort.darker().darker().darker().getRGB());
+            RenderUtils.drawGradientRect(positions, Theme.getMainColor(50).getRGB(), Theme.getBackColor(50).getRGB());
 
-            RenderUtils.drawBox(positions, 0.0f, 1.5f, black.getRGB());
-            RenderUtils.drawBox(positions, 0.5f, 0.5f, color.getRGB());
+            RenderUtils.drawBox(positions, 0.0f, 1.5f, Theme.getBackColor(255).getRGB());
+            RenderUtils.drawBox(positions, 0.5f, 0.5f, Theme.getMainColor().getRGB());
         }
     }
 
@@ -94,5 +89,4 @@ public class PlayerESP extends Module {
     public void onWorldLoad(WorldLoadEvent event) {
         positions.clear();
     }
-
 }
