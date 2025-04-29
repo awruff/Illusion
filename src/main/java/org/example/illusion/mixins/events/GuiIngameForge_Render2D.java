@@ -10,7 +10,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GuiIngameForge.class, remap = false)
 public class GuiIngameForge_Render2D {
-    @Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/GuiIngameForge;post(Lnet/minecraftforge/client/event/RenderGameOverlayEvent$ElementType;)V", shift = At.Shift.AFTER), remap = false)
+    @Inject(
+            method = "renderGameOverlay",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;enableBlend()V")
+    )
     private void illusion$publishRender2D(float partialTicks, CallbackInfo ci) {
         IllusionClient.getInstance().getEventBus().publish(new Render2DEvent(partialTicks));
     }

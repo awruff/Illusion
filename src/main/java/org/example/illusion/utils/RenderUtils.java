@@ -1,63 +1,81 @@
 package org.example.illusion.utils;
 
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.culling.Frustum;
-import net.minecraft.util.AxisAlignedBB;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtils {
-    private static final Frustum FRUSTUM = new Frustum();
-
-    public static int drawString(String text, float x, float y) {
-        return drawString(text, x, y, -1);
+    public static void drawBox(float left, float top, float right, float bottom, float inset, float thickness, int color) {
+        drawBox(new float[]{left, top, right, bottom}, inset, thickness, color);
     }
 
-    public static int drawString(String text, float x, float y, int color) {
-        return Wrapper.getFontRenderer().drawStringWithShadow(text, x, y, color);
-    }
-
-    public static boolean isBBInFrustum(AxisAlignedBB aabb) {
-        EntityPlayerSP player = Wrapper.getPlayer();
-        FRUSTUM.setPosition(player.posX, player.posY, player.posZ);
-        return FRUSTUM.isBoundingBoxInFrustum(aabb);
-    }
-
-    public static void drawBox(float x, float y, float x2, float y2, float inset, float thickness) {
-        float leftStart = x + inset;
+    public static void drawBox(float[] vertices, float inset, float thickness, int color) {
+        float leftStart = vertices[0] + inset;
         float leftEnd = leftStart + thickness;
-
-        // Left
-        glVertex2f(leftStart, y + inset);
-        glVertex2f(leftStart, y2 - inset);
-        glVertex2f(leftEnd, y2 - inset);
-        glVertex2f(leftEnd, y + inset);
-
-        float rightEnd = x2 - inset;
+        float rightEnd = vertices[2] - inset;
         float rightStart = rightEnd - thickness;
-
-        // Right
-        glVertex2f(rightStart, y + inset);
-        glVertex2f(rightStart, y2 - inset);
-        glVertex2f(rightEnd, y2 - inset);
-        glVertex2f(rightEnd, y + inset);
-
-        float topStart = y + inset;
+        float bottomEnd = vertices[3] - inset;
+        float bottomStart = bottomEnd - thickness;
+        float topStart = vertices[1] + inset;
         float topEnd = topStart + thickness;
 
-        // Top
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glBegin(GL_QUADS);
+
+        GLUtils.color(color);
+
+        glVertex2f(leftStart, topStart);
+        glVertex2f(leftStart, bottomEnd);
+        glVertex2f(leftEnd, bottomEnd);
+        glVertex2f(leftEnd, topStart);
+
+        glVertex2f(rightStart, topStart);
+        glVertex2f(rightStart, bottomEnd);
+        glVertex2f(rightEnd, bottomEnd);
+        glVertex2f(rightEnd, topStart);
+
         glVertex2f(leftEnd, topStart);
         glVertex2f(leftEnd, topEnd);
         glVertex2f(rightStart, topEnd);
         glVertex2f(rightStart, topStart);
 
-        float bottomEnd = y2 - inset;
-        float bottomStart = bottomEnd - thickness;
-
-        // Bottom
         glVertex2f(leftEnd, bottomStart);
         glVertex2f(leftEnd, bottomEnd);
         glVertex2f(rightStart, bottomEnd);
         glVertex2f(rightStart, bottomStart);
+
+        glEnd();
+        glDisable(GL_BLEND);
+        glEnable(GL_TEXTURE_2D);
+    }
+
+    public static void drawGradientRect(float left, float top, float right, float bottom, int startColor, int endColor) {
+        drawGradientRect(new float[]{left, top, right, bottom}, startColor, endColor);
+    }
+
+    public static void drawGradientRect(float[] vertices, int startColor, int endColor) {
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glShadeModel(GL_SMOOTH);
+        glBegin(GL_QUADS);
+
+        GLUtils.color(startColor);
+
+        glVertex2f(vertices[0], vertices[1]);
+
+        GLUtils.color(endColor);
+
+        glVertex2f(vertices[0], vertices[3]);
+        glVertex2f(vertices[2], vertices[3]);
+
+        GLUtils.color(startColor);
+
+        glVertex2f(vertices[2], vertices[1]);
+
+        glEnd();
+        glDisable(GL_BLEND);
+        glShadeModel(GL_FLAT);
+        glEnable(GL_TEXTURE_2D);
     }
 }

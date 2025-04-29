@@ -17,44 +17,29 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.lwjgl.opengl.GL11.*;
-
 @ModuleInfo(name = "ESP", category = Category.VISUALS)
 public class PlayerESP extends Module {
     private final Map<EntityPlayer, float[]> positions = new HashMap<>();
 
     // TODO: Client themes (like I made for the original illusion)
-    private final int color = new Color(255, 255, 255).getRGB();
+    private final Color color = new Color(255, 255, 255);
+    private final Color colort = new Color(255, 255, 255, 50);
+
+    private final Color black = new Color(0, 0, 0);
 
     @Listen
     public void onRender2D(Render2DEvent event) {
         for (EntityPlayer player : positions.keySet()) {
             if ((player.getDistanceToEntity(Wrapper.getPlayer()) < 1.0F && Wrapper.isInFirstPerson()) ||
-                    !RenderUtils.isBBInFrustum(player.getEntityBoundingBox()))
+                    !Wrapper.isBBInFrustum(player.getEntityBoundingBox()))
                 continue;
 
             float[] positions = this.positions.get(player);
-            float x = positions[0];
-            float y = positions[1];
-            float x2 = positions[2];
-            float y2 = positions[3];
 
-            glDisable(GL_TEXTURE_2D);
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            RenderUtils.drawGradientRect(positions, colort.getRGB(), colort.darker().darker().darker().getRGB());
 
-            glColor4ub((byte) 0, (byte) 0, (byte) 0, (byte) 0x96);
-
-            glBegin(GL_QUADS);
-
-            RenderUtils.drawBox(x, y, x2, y2, 0.0f, 1.5f);
-            GLUtils.color(color);
-            RenderUtils.drawBox(x, y, x2, y2, 0.5f, 0.5f);
-
-            glEnd();
-
-            glEnable(GL_TEXTURE_2D);
-            glDisable(GL_BLEND);
+            RenderUtils.drawBox(positions, 0.0f, 1.5f, black.getRGB());
+            RenderUtils.drawBox(positions, 0.5f, 0.5f, color.getRGB());
         }
     }
 
@@ -65,7 +50,7 @@ public class PlayerESP extends Module {
         float partialTicks = event.getPartialTicks();
 
         for (EntityPlayer player : Wrapper.getLoadedPlayers()) {
-            if (!RenderUtils.isBBInFrustum(player.getEntityBoundingBox()) || !Wrapper.getLoadedPlayers().contains(player)) continue;
+            if (!Wrapper.isBBInFrustum(player.getEntityBoundingBox()) || !Wrapper.getLoadedPlayers().contains(player)) continue;
 
             double posX = player.prevPosX + (player.posX - player.prevPosX) * partialTicks - Wrapper.getRenderManager().viewerPosX;
             double posY = player.prevPosY + (player.posY - player.prevPosY) * partialTicks - Wrapper.getRenderManager().viewerPosY;

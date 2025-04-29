@@ -4,15 +4,20 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import java.util.List;
 
 public class Wrapper {
+    private static final Frustum FRUSTUM = new Frustum();
+
     public static Minecraft getClient() {
         return Minecraft.getMinecraft();
     }
@@ -55,10 +60,16 @@ public class Wrapper {
     }
 
     public static int getScale() {
-        return getSettings().guiScale;
+        return new ScaledResolution(getClient()).getScaleFactor();
     }
 
     public static RenderManager getRenderManager() {
         return getClient().getRenderManager();
+    }
+
+    public static boolean isBBInFrustum(AxisAlignedBB aabb) {
+        EntityPlayerSP player = Wrapper.getPlayer();
+        FRUSTUM.setPosition(player.posX, player.posY, player.posZ);
+        return FRUSTUM.isBoundingBoxInFrustum(aabb);
     }
 }
