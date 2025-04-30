@@ -5,8 +5,9 @@
     "version": "${mod_version}",
     "mcversion": "${mc_version}",
     "url": "https://github.com/Syz66/Illusion",
+    "logoFile": "assets/illusion/icon.png",
     "authorList": [
-      "Syz66 "
+      "Syz66"
     ]
   }
 ]

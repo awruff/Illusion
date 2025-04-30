@@ -1,7 +1,5 @@
 ## Discord
-A new discord for the development of Illusion.
-
-https://discord.gg/fnAgUUAz
+<a href="https://discord.gg/fnAgUUAz"><img src="https://invidget.switchblade.xyz/fnAgUUAz" alt="https://discord.gg/fnAgUUAz"/></a><br>
 
 ## Illusion
 Back and better than ever (hopefully)

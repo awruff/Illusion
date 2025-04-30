@@ -18,7 +18,7 @@ public class Theme {
         String theme = module.theme.getValue();
 
         switch (theme) {
-            case "Emerald":
+            case "Illusion":
                 return new Color(46, 204, 113, alpha);
             case "Amethyst":
                 return new Color(155, 89, 182, alpha);
