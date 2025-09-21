@@ -30,8 +30,8 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.polymixin)
-    shade(libs.polymixin)
+    implementation(libs.mixin)
+    shade(libs.mixin)
 
     implementation(libs.radbus)
     shade(libs.radbus)
