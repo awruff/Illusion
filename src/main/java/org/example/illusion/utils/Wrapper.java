@@ -5,13 +5,13 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class Wrapper {
         return getClient().thePlayer;
     }
 
-    public static World getWorld() {
+    public static WorldClient getWorld() {
         return getClient().theWorld;
     }
 

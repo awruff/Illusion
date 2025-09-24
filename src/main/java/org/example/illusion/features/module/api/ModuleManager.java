@@ -9,6 +9,7 @@ import org.example.illusion.features.module.impl.combat.Hitboxes;
 import org.example.illusion.features.module.impl.combat.NoHitDelay;
 import org.example.illusion.features.module.impl.combat.Reach;
 import org.example.illusion.features.module.impl.misc.ClickGuiModule;
+import org.example.illusion.features.module.impl.misc.Schizo;
 import org.example.illusion.features.module.impl.misc.TestModule;
 import org.example.illusion.features.module.impl.misc.Weapons;
 import org.example.illusion.features.module.impl.movement.NoJumpDelay;
@@ -29,6 +30,7 @@ public class ModuleManager extends Manager<Module> {
                 new NoHitDelay(),
                 new Reach(),
                 new ClickGuiModule(),
+                new Schizo(),
                 new TestModule(),
                 new Weapons(),
                 new NoJumpDelay(),
