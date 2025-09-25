@@ -6,6 +6,7 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.example.illusion.event.impl.player.PlayerTickEvent;
 import org.example.illusion.event.impl.render.Render3DEvent;
+import org.example.illusion.features.clickgui.api.setting.impl.CheckSetting;
 import org.example.illusion.features.module.api.Category;
 import org.example.illusion.features.module.api.Module;
 import org.example.illusion.features.module.api.ModuleInfo;
@@ -22,6 +23,12 @@ public class Schizo extends Module {
     private boolean peakaBoo = false;
     private int peakaTicks = 0;
 
+    private CheckSetting playPeakaBoo;
+
+    public Schizo() {
+        addSetting(playPeakaBoo = new CheckSetting("Check", this, true));
+    }
+
     @Override
     public void onEnable() {
         GameProfile profile = new GameProfile(UUID.randomUUID(), "The Shadows");
@@ -33,6 +40,7 @@ public class Schizo extends Module {
 
     @Listen
     public void onTick(PlayerTickEvent event) {
+        if (!playPeakaBoo.isEnabled()) return;
         if (Wrapper.isBBInFrustum(fakePlayer.getEntityBoundingBox())) {
             peakaBoo = ++peakaTicks > 2;
         } else if (fakePlayer.isInvisible()) {
@@ -43,7 +51,7 @@ public class Schizo extends Module {
 
     @Listen
     public void onRender(Render3DEvent event) {
-        fakePlayer.setInvisible(peakaBoo);
+        fakePlayer.setInvisible(peakaBoo && playPeakaBoo.isEnabled());
 
         updateLocation();
     }
@@ -55,6 +63,7 @@ public class Schizo extends Module {
         double behindX = player.posX - Math.sin(radians) * -2.5;
         double behindZ = player.posZ + Math.cos(radians) * -2.5;
 
-        fakePlayer.setLocationAndAngles(behindX, player.posY, behindZ, -player.cameraYaw, -player.cameraPitch);
+        fakePlayer.setLocationAndAngles(behindX, player.posY, behindZ, 0, 0);
+        fakePlayer.setRotationYawHead(player.rotationYawHead);
     }
 }
