@@ -34,7 +34,7 @@ public class ModuleManager extends Manager<Module> {
                 new NoJumpDelay(),
                 new Sprint(),
                 new InventoryMove(),
-//                new ModOverlay(),
+                new ModOverlay(),
                 new NoHurtCam(),
                 new PlayerESP()
         ));

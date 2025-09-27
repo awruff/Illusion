@@ -1,6 +1,7 @@
 package org.example.illusion.utils;
 
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
@@ -17,11 +18,11 @@ public class GLUtils {
     private static final float[] BUFFER = new float[3];
 
     public static void color(int color) {
-        glColor4ub(
-                (byte) (color >> 16 & 0xFF),
-                (byte) (color >> 8 & 0xFF),
-                (byte) (color & 0xFF),
-                (byte) (color >> 24 & 0xFF)
+        GlStateManager.color(
+                (color >> 16 & 0xFF),
+                (color >> 8 & 0xFF),
+                (color & 0xFF),
+                (color >> 24 & 0xFF)
         );
     }
 

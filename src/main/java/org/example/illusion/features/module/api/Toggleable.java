@@ -2,8 +2,6 @@ package org.example.illusion.features.module.api;
 
 import org.example.illusion.IllusionClient;
 
-// ill move to general api when
-// I find it suitable for another feature
 public class Toggleable {
     private boolean enabled;
 
@@ -11,7 +9,7 @@ public class Toggleable {
         setEnabled(!enabled);
     }
 
-    public final void setEnabled(boolean enabled) {
+    public void setEnabled(boolean enabled) {
         if (this.enabled != enabled) {
             this.enabled = enabled;
 

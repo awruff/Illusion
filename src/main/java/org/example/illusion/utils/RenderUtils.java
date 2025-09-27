@@ -3,10 +3,6 @@ package org.example.illusion.utils;
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtils {
-    public static void drawBox(float left, float top, float right, float bottom, float inset, float thickness, int color) {
-        drawBox(new float[]{left, top, right, bottom}, inset, thickness, color);
-    }
-
     public static void drawBox(float[] vertices, float inset, float thickness, int color) {
         float leftStart = vertices[0] + inset;
         float leftEnd = leftStart + thickness;
@@ -47,10 +43,6 @@ public class RenderUtils {
         glEnd();
         glDisable(GL_BLEND);
         glEnable(GL_TEXTURE_2D);
-    }
-
-    public static void drawGradientRect(float left, float top, float right, float bottom, int startColor, int endColor) {
-        drawGradientRect(new float[]{left, top, right, bottom}, startColor, endColor);
     }
 
     public static void drawGradientRect(float[] vertices, int startColor, int endColor) {

@@ -1,6 +1,9 @@
 package org.example.illusion.features.module.api;
 
 import org.apache.commons.lang3.Validate;
+import org.example.illusion.IllusionClient;
+import org.example.illusion.event.impl.client.ModuleDisabledEvent;
+import org.example.illusion.event.impl.client.ModuleEnabledEvent;
 import org.example.illusion.features.api.Feature;
 import org.example.illusion.features.clickgui.api.setting.api.Setting;
 
@@ -33,6 +36,16 @@ public class Module extends Toggleable implements Feature {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public final void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (enabled) {
+            IllusionClient.getInstance().getEventBus().publish(new ModuleEnabledEvent(this));
+        } else {
+            IllusionClient.getInstance().getEventBus().publish(new ModuleDisabledEvent(this));
+        }
     }
 
     public Category getCategory() {
