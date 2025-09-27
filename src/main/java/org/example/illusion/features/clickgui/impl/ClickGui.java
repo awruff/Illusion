@@ -1,6 +1,7 @@
 package org.example.illusion.features.clickgui.impl;
 
 import net.minecraft.client.gui.GuiScreen;
+import org.example.illusion.IllusionClient;
 import org.example.illusion.features.clickgui.api.component.api.Component;
 import org.example.illusion.features.clickgui.api.component.api.Frame;
 import org.example.illusion.features.module.api.Category;
@@ -91,6 +92,11 @@ public class ClickGui extends GuiScreen {
                 }
             }
         }
+    }
+
+    @Override
+    public void onGuiClosed() {
+        IllusionClient.getInstance().getModuleManager().getElement("ClickGui").setEnabled(false);
     }
 
     @Override
