@@ -34,6 +34,6 @@ public class Theme {
     }
 
     public static Color getBackColor(int alpha) {
-        return new Color(0, 0, 0, alpha);
+        return new Color(10, 10, 10, alpha);
     }
 }

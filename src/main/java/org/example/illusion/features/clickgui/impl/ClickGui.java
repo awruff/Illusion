@@ -5,13 +5,14 @@ import org.example.illusion.IllusionClient;
 import org.example.illusion.features.clickgui.api.component.api.Component;
 import org.example.illusion.features.clickgui.api.component.api.Frame;
 import org.example.illusion.features.module.api.Category;
+import org.example.illusion.utils.RenderUtils;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ClickGui extends GuiScreen {
 
     public static ArrayList<Frame> frames;
-    public static int color = -1;
 
     public ClickGui() {
         frames = new ArrayList<>();
@@ -30,7 +31,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawGradientRect(0, 0, this.width, this.height, new Color(0, 0,0, 30).getRGB(), Theme.getMainColor(30).getRGB());
         for (Frame frame : frames) {
             frame.renderFrame();
             frame.updatePosition(mouseX, mouseY);

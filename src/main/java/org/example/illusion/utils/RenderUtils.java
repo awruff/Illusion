@@ -3,6 +3,9 @@ package org.example.illusion.utils;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import org.example.illusion.features.clickgui.impl.Theme;
+
+import java.awt.Color;
 
 import static org.lwjgl.opengl.GL11.*;
 import static net.minecraft.client.renderer.GlStateManager.*;
@@ -40,6 +43,11 @@ public class RenderUtils {
 
         disableBlend();
         enableTexture2D();
+    }
+
+    public static void drawIllusionBackground(float height, float width) {
+        float[] vertices = new float[] { 0, 0, height, width };
+        drawGradientRect(vertices, new Color(0, 0,0, 20).getRGB(), Theme.getMainColor(20).getRGB());
     }
 
     public static void drawGradientRect(float[] vertices, int startColor, int endColor) {

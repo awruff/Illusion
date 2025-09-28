@@ -106,13 +106,6 @@ public class ButtonComponent extends Component {
                 for (Component comp : this.subcomponents) {
                     comp.renderComponent();
                 }
-                Gui.drawRect(
-                        parent.getX() + 2,
-                        parent.getY() + this.offset + height,
-                        parent.getX() + 3,
-                        parent.getY() + this.offset + ((this.subcomponents.size() + 1) * height),
-                        ClickGui.color
-                );
             }
         }
     }
