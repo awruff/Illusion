@@ -1,48 +1,34 @@
 package org.example.illusion.utils;
 
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+
 import static org.lwjgl.opengl.GL11.*;
+import static net.minecraft.client.renderer.GlStateManager.*;
 
 public class RenderUtils {
+    private static final Tessellator tessellator = Tessellator.getInstance();
+    private static final WorldRenderer renderer = tessellator.getWorldRenderer();
+
     public static void drawBox(float[] vertices, float inset, float thickness, int color) {
-        float leftStart = vertices[0] + inset;
-        float leftEnd = leftStart + thickness;
-        float rightEnd = vertices[2] - inset;
-        float rightStart = rightEnd - thickness;
-        float bottomEnd = vertices[3] - inset;
-        float bottomStart = bottomEnd - thickness;
-        float topStart = vertices[1] + inset;
-        float topEnd = topStart + thickness;
-
-        glDisable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glBegin(GL_QUADS);
-
+        disableTexture2D();
+        enableBlend();
+        blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         GLUtils.color(color);
 
-        glVertex2f(leftStart, topStart);
-        glVertex2f(leftStart, bottomEnd);
-        glVertex2f(leftEnd, bottomEnd);
-        glVertex2f(leftEnd, topStart);
+        glLineWidth(thickness);
 
-        glVertex2f(rightStart, topStart);
-        glVertex2f(rightStart, bottomEnd);
-        glVertex2f(rightEnd, bottomEnd);
-        glVertex2f(rightEnd, topStart);
+        renderer.begin(GL_LINE_LOOP, DefaultVertexFormats.POSITION);
+        renderer.pos(vertices[0] + inset, vertices[1] + inset, 0).endVertex();
+        renderer.pos(vertices[0] + inset, vertices[3] - inset, 0).endVertex();
+        renderer.pos(vertices[2] - inset, vertices[3] - inset, 0).endVertex();
+        renderer.pos(vertices[2] - inset, vertices[1] + inset, 0).endVertex();
+        tessellator.draw();
 
-        glVertex2f(leftEnd, topStart);
-        glVertex2f(leftEnd, topEnd);
-        glVertex2f(rightStart, topEnd);
-        glVertex2f(rightStart, topStart);
-
-        glVertex2f(leftEnd, bottomStart);
-        glVertex2f(leftEnd, bottomEnd);
-        glVertex2f(rightStart, bottomEnd);
-        glVertex2f(rightStart, bottomStart);
-
-        glEnd();
-        glDisable(GL_BLEND);
-        glEnable(GL_TEXTURE_2D);
+        disableBlend();
+        enableTexture2D();
     }
 
     public static void drawGradientRect(float[] vertices, int startColor, int endColor) {

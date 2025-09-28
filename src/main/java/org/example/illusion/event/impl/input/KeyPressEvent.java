@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.input;
 
-import org.example.illusion.event.Event;
+import org.example.illusion.event.api.Event;
 import org.lwjgl.input.Keyboard;
 
 public final class KeyPressEvent implements Event {

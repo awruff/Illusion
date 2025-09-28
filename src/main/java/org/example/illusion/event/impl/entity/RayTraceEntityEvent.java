@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.entity;
 
-import org.example.illusion.event.Event;
+import org.example.illusion.event.api.Event;
 
 public final class RayTraceEntityEvent implements Event {
     private float reach = 3.0F;

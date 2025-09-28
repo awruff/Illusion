@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.client;
 
-import org.example.illusion.event.Event;
+import org.example.illusion.event.api.Event;
 import org.example.illusion.features.module.api.Module;
 
 public class ModuleDisabledEvent implements Event {

@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.player;
 
-import org.example.illusion.event.Event;
+import org.example.illusion.event.api.Event;
 
 public final class SprintEvent implements Event {
     private boolean sprinting;

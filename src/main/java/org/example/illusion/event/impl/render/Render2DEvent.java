@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.render;
 
-import org.example.illusion.event.Event;
+import org.example.illusion.event.api.Event;
 
 public final class Render2DEvent implements Event {
     private final float partialTicks;

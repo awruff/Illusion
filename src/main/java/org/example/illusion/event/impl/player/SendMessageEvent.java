@@ -1,6 +1,6 @@
 package org.example.illusion.event.impl.player;
 
-import org.example.illusion.event.CancellableEvent;
+import org.example.illusion.event.api.CancellableEvent;
 
 public final class SendMessageEvent extends CancellableEvent {
     private String message;
