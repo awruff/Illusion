@@ -92,7 +92,7 @@ public class ButtonComponent extends Component {
                 this.mod.isEnabled() ? Theme.getMainColor().getRGB() : -1
         );
 
-        if (this.subcomponents.size() > 2) {
+        if (!this.subcomponents.isEmpty()) {
             FontUtils.drawString(
                     this.open ? "-" : "+",
                     (parent.getX() + parent.getWidth() - 10) * 2,
