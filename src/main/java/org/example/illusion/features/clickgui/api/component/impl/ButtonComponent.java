@@ -15,7 +15,6 @@ import org.example.illusion.features.clickgui.impl.ClickGui;
 import org.example.illusion.features.clickgui.impl.Theme;
 import org.example.illusion.features.module.api.Module;
 import org.example.illusion.utils.FontUtils;
-import org.example.illusion.utils.Wrapper;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -34,26 +33,26 @@ public class ButtonComponent extends Component {
         this.mod = mod;
         this.parent = parent;
         this.offset = offset;
-        this.subcomponents = new ArrayList<Component>();
+        this.subcomponents = new ArrayList<>();
         this.open = false;
         height = 12;
 
-        int y = offset + 12;
+        int y = offset + height;
 
         for (Setting setting : mod.getSettings()) {
             if (setting instanceof ComboSetting) {
                 this.subcomponents.add(new ComboComponent(this, (ComboSetting) setting, y));
-                y += 12;
+                y += height;
             }
 
             if (setting instanceof SliderSetting) {
                 this.subcomponents.add(new SliderComponent(this, (SliderSetting) setting, y));
-                y += 12;
+                y += height;
             }
 
             if (setting instanceof CheckSetting) {
                 this.subcomponents.add(new CheckComponent(this, (CheckSetting) setting, y));
-                y += 12;
+                y += height;
             }
         }
 
@@ -63,10 +62,10 @@ public class ButtonComponent extends Component {
     @Override
     public void setOff(int newOff) {
         offset = newOff;
-        int opY = offset + 12;
+        int opY = offset + height;
         for (Component comp : this.subcomponents) {
             comp.setOff(opY);
-            opY += 12;
+            opY += height;
         }
     }
 
@@ -76,7 +75,7 @@ public class ButtonComponent extends Component {
                 parent.getX(),
                 this.parent.getY() + this.offset,
                 parent.getX() + parent.getWidth(),
-                this.parent.getY() + 12 + this.offset,
+                this.parent.getY() + height + this.offset,
                 this.isHovered ?
                         (this.mod.isEnabled() ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()) :
                         (this.mod.isEnabled() ? Theme.getBackColor().darker().darker().getRGB() : Theme.getBackColor().darker().getRGB())
@@ -109,9 +108,9 @@ public class ButtonComponent extends Component {
                 }
                 Gui.drawRect(
                         parent.getX() + 2,
-                        parent.getY() + this.offset + 12,
+                        parent.getY() + this.offset + height,
                         parent.getX() + 3,
-                        parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12),
+                        parent.getY() + this.offset + ((this.subcomponents.size() + 1) * height),
                         ClickGui.color
                 );
             }
@@ -121,9 +120,9 @@ public class ButtonComponent extends Component {
     @Override
     public int getHeight() {
         if (this.open) {
-            return (12 * (this.subcomponents.size() + 1));
+            return (height * (this.subcomponents.size() + 1));
         }
-        return 12;
+        return height;
     }
 
     @Override
