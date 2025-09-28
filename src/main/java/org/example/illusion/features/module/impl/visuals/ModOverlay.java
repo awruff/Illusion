@@ -21,8 +21,8 @@ import java.util.Comparator;
 public class ModOverlay extends Module {
     private ArrayList<Module> enabled;
 
-    private ComboSetting sorting = new ComboSetting("Sorting", this, new String[]{"Length", "Alphabetical"});
-    private CheckSetting hideVisuals = new CheckSetting("Hide Visuals", this, true);
+    private final ComboSetting sorting = new ComboSetting("Sorting", this, new String[]{"Length", "Alphabetical"});
+    private final CheckSetting hideVisuals = new CheckSetting("Hide Visuals", this, true);
 
     public ModOverlay() {
         addSetting(sorting);
@@ -31,15 +31,7 @@ public class ModOverlay extends Module {
 
     @Override
     public void onEnable() {
-        enabled = new ArrayList<>();
-
-        IllusionClient.getInstance()
-                .getModuleManager().getElements()
-                .forEach(module -> {
-                    if (module.isEnabled()) enabled.add(module);
-                });
-
-        sort();
+        refresh();
     }
 
     @Listen
@@ -54,28 +46,37 @@ public class ModOverlay extends Module {
 
     @Listen
     public void onModuleEnabled(ModuleEnabledEvent event) {
-        // to avoid having two "ModOverlay" modules
-        // although ill probably remove the visuals category from the list in the future.
-        // TODO: Visual category toggle
-        if (enabled.contains(event.getModule())) return;
-
-        enabled.add(event.getModule());
-        sort();
+        refresh();
     }
 
     @Listen
     public void onModuleDisabled(ModuleDisabledEvent event) {
-        enabled.remove(event.getModule());
+        refresh();
     }
 
     @Override
     public void onUpdate() {
+        refresh();
+    }
+
+    private void refresh() {
+        enabled = new ArrayList<>();
+
+        IllusionClient.getInstance()
+                .getModuleManager().getElements()
+                .forEach(module -> {
+                    if (!module.isEnabled()) return;
+                    if (hideVisuals.isEnabled() && module.getCategory().equals(Category.VISUALS)) return;
+
+                    enabled.add(module);
+                });
+
         sort();
     }
 
     private void sort() {
         if (sorting.getValue().equals("Length")) {
-            enabled.sort(Comparator.comparing(it -> it.getName().length()));
+            enabled.sort(Comparator.comparing(it -> FontUtils.length(it.getName())));
         } else {
             enabled.sort(Comparator.comparing(Module::getName));
         }

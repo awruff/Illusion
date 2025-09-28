@@ -1,12 +1,14 @@
 package org.example.illusion.features.api;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Manager<T extends Feature> {
     protected List<T> elements;
 
-    public Manager(List<T> elements) {
-        this.elements = elements;
+    @SafeVarargs
+    public Manager(T... elements) {
+        this.elements = Arrays.asList(elements);
     }
 
     public T getElement(String name) {
