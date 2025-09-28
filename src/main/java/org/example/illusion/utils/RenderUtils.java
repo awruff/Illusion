@@ -1,6 +1,5 @@
 package org.example.illusion.utils;
 
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -13,18 +12,30 @@ public class RenderUtils {
     private static final WorldRenderer renderer = tessellator.getWorldRenderer();
 
     public static void drawBox(float[] vertices, float inset, float thickness, int color) {
+        float left = vertices[0] + inset;
+        float leftInner = left + thickness;
+
+        float right = vertices[2] - inset;
+        float rightInner = right - thickness;
+
+        float top = vertices[1] + inset;
+        float topInner = top + thickness;
+
+        float bottom = vertices[3] - inset;
+        float bottomInner = bottom - thickness;
+
         disableTexture2D();
         enableBlend();
         blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         GLUtils.color(color);
 
-        glLineWidth(thickness);
+        renderer.begin(GL_QUADS, DefaultVertexFormats.POSITION);
 
-        renderer.begin(GL_LINE_LOOP, DefaultVertexFormats.POSITION);
-        renderer.pos(vertices[0] + inset, vertices[1] + inset, 0).endVertex();
-        renderer.pos(vertices[0] + inset, vertices[3] - inset, 0).endVertex();
-        renderer.pos(vertices[2] - inset, vertices[3] - inset, 0).endVertex();
-        renderer.pos(vertices[2] - inset, vertices[1] + inset, 0).endVertex();
+        submitQuad(left, top, leftInner, bottom);
+        submitQuad(rightInner, top, right, bottom);
+        submitQuad(leftInner, top, rightInner, topInner);
+        submitQuad(leftInner, bottomInner, rightInner, bottom);
+
         tessellator.draw();
 
         disableBlend();
@@ -32,28 +43,37 @@ public class RenderUtils {
     }
 
     public static void drawGradientRect(float[] vertices, int startColor, int endColor) {
-        glDisable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glShadeModel(GL_SMOOTH);
-        glBegin(GL_QUADS);
+        float r = (startColor >> 16 & 0xFF) / 255.0f;
+        float g = (startColor >> 8 & 0xFF) / 255.0f;
+        float b = (startColor & 0xFF) / 255.0f;
+        float a = (startColor >> 24 & 0xFF) / 255.0f;
 
-        GLUtils.color(startColor);
+        float r2 = (endColor >> 16 & 0xFF) / 255.0f;
+        float g2 = (endColor >> 8 & 0xFF) / 255.0f;
+        float b2 = (endColor & 0xFF) / 255.0f;
+        float a2 = (endColor >> 24 & 0xFF) / 255.0f;
 
-        glVertex2f(vertices[0], vertices[1]);
+        disableTexture2D();
+        enableBlend();
+        shadeModel(GL_SMOOTH);
+        blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        GLUtils.color(endColor);
+        renderer.begin(GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+        renderer.pos(vertices[0], vertices[1], 0).color(r, g, b, a).endVertex();
+        renderer.pos(vertices[0], vertices[3], 0).color(r2, g2, b2, a2).endVertex();
+        renderer.pos(vertices[2], vertices[3], 0).color(r2, g2, b2, a2).endVertex();
+        renderer.pos(vertices[2], vertices[1], 0).color(r, g, b, a).endVertex();
+        tessellator.draw();
 
-        glVertex2f(vertices[0], vertices[3]);
-        glVertex2f(vertices[2], vertices[3]);
+        disableBlend();
+        shadeModel(GL_FLAT);
+        enableTexture2D();
+    }
 
-        GLUtils.color(startColor);
-
-        glVertex2f(vertices[2], vertices[1]);
-
-        glEnd();
-        glDisable(GL_BLEND);
-        glShadeModel(GL_FLAT);
-        glEnable(GL_TEXTURE_2D);
+    private static void submitQuad(float x1, float y1, float x2, float y2) {
+        renderer.pos(x1, y1, 0).endVertex();
+        renderer.pos(x1, y2, 0).endVertex();
+        renderer.pos(x2, y2, 0).endVertex();
+        renderer.pos(x2, y1, 0).endVertex();
     }
 }

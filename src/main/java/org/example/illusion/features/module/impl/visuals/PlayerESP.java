@@ -33,8 +33,8 @@ public class PlayerESP extends Module {
 
             RenderUtils.drawGradientRect(positions, Theme.getMainColor(50).getRGB(), Theme.getBackColor(50).getRGB());
 
-            RenderUtils.drawBox(positions, 0.0f, 1f, Theme.getBackColor(255).getRGB());
-            RenderUtils.drawBox(positions, 1f, 1.5f, Theme.getMainColor().getRGB());
+            RenderUtils.drawBox(positions, 0.0f, 1.5f, Theme.getBackColor(255).getRGB());
+            RenderUtils.drawBox(positions, 0.5f, 0.5f, Theme.getMainColor().getRGB());
         }
     }
 
