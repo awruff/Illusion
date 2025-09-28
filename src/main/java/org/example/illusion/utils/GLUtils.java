@@ -19,10 +19,10 @@ public class GLUtils {
 
     public static void color(int color) {
         GlStateManager.color(
-                (color >> 16 & 0xFF),
-                (color >> 8 & 0xFF),
-                (color & 0xFF),
-                (color >> 24 & 0xFF)
+                (color >> 16 & 0xFF) / 255.0f,
+                (color >> 8 & 0xFF) / 255.0f,
+                (color & 0xFF) / 255.0f,
+                (color >> 24 & 0xFF) / 255.0f
         );
     }
 
