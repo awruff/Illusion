@@ -33,12 +33,12 @@ public class ComboSetting extends Setting {
 
     public void next() {
         index = (index + 1) % options.length;
-        value = options[index];
+        setValue(options[index]);
     }
 
     public void previous() {
         index = (index - 1 + options.length) % options.length;
-        value = options[index];
+        setValue(options[index]);
     }
 
     public void setValue(String newValue) {
@@ -46,6 +46,7 @@ public class ComboSetting extends Setting {
             if (options[i].equalsIgnoreCase(newValue)) {
                 this.value = options[i];
                 this.index = i;
+                this.getParent().onUpdate();
                 return;
             }
         }
@@ -54,7 +55,7 @@ public class ComboSetting extends Setting {
     public void setIndex(int newIndex) {
         if (newIndex >= 0 && newIndex < options.length) {
             this.index = newIndex;
-            this.value = options[newIndex];
+            setValue(options[newIndex]);
         }
     }
 }

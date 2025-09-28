@@ -29,12 +29,12 @@ public class Module extends Toggleable implements Feature {
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
     @Override
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
@@ -48,23 +48,26 @@ public class Module extends Toggleable implements Feature {
         }
     }
 
-    public Category getCategory() {
+    public final Category getCategory() {
         return category;
     }
 
-    public int getBind() {
+    public final int getBind() {
         return bind;
     }
 
-    public void setBind(int bind) {
+    public final void setBind(int bind) {
         this.bind = bind;
     }
 
-    public ArrayList<Setting> getSettings() {
+    public final ArrayList<Setting> getSettings() {
         return settings;
     }
 
-    public void addSetting(Setting setting) {
+    public final void addSetting(Setting setting) {
         settings.add(setting);
+    }
+
+    public void onUpdate() {
     }
 }

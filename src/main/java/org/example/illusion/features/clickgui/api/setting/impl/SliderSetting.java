@@ -33,6 +33,7 @@ public class SliderSetting extends Setting {
     }
 
     public void setValue(float value) {
+        this.getParent().onUpdate();
         this.value = value;
     }
 }

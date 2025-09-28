@@ -17,6 +17,7 @@ public class CheckSetting extends Setting {
     }
 
     public void setEnabled(boolean enabled) {
+        this.getParent().onUpdate();
         this.enabled = enabled;
     }
 }
