@@ -44,8 +44,6 @@ public class SliderComponent extends Component {
                 this.hovered ? Theme.getBackColor().darker().getRGB() : Theme.getBackColor().getRGB()
         );
 
-        final int drag = (int)(setting.getValue() / setting.getMax() * this.parent.parent.getWidth());
-
         Gui.drawRect(
                 parent.parent.getX() + 2,
                 parent.parent.getY() + offset,

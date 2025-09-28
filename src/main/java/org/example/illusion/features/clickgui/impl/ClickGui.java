@@ -5,13 +5,10 @@ import org.example.illusion.IllusionClient;
 import org.example.illusion.features.clickgui.api.component.api.Component;
 import org.example.illusion.features.clickgui.api.component.api.Frame;
 import org.example.illusion.features.module.api.Category;
-import org.example.illusion.utils.RenderUtils;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class ClickGui extends GuiScreen {
-
     public static ArrayList<Frame> frames;
 
     public ClickGui() {
@@ -31,7 +28,8 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawGradientRect(0, 0, this.width, this.height, new Color(0, 0,0, 30).getRGB(), Theme.getMainColor(30).getRGB());
+        drawDefaultBackground();
+
         for (Frame frame : frames) {
             frame.renderFrame();
             frame.updatePosition(mouseX, mouseY);
@@ -98,10 +96,5 @@ public class ClickGui extends GuiScreen {
     @Override
     public void onGuiClosed() {
         IllusionClient.getInstance().getModuleManager().getElement("ClickGui").setEnabled(false);
-    }
-
-    @Override
-    public boolean doesGuiPauseGame() {
-        return true;
     }
 }
